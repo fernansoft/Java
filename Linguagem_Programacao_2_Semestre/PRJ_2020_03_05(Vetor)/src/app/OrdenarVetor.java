@@ -1,3 +1,8 @@
+/*
+Objetivo   : Receber valores em um vetor e classificar (ordem crescente);
+Programador: Fernando Oliveira da Costa
+Data       : 14/03/2020
+*/
 package app;
 
 import java.security.SecureRandom;
@@ -7,28 +12,33 @@ public class OrdenarVetor
 {
     public static void main(String[] args)
     {
-        int vet[] = new int[5];
-        int aux;
+        //Vetor que recebe os valores a serem classificados.
+        int vetorPrincipal[] = new int[5];
+        int auxiliar;
         SecureRandom random = new SecureRandom();
 
-        for(int i=0; i<20; i++)
+        for(int i=0; i<5; i++)
+        //for: preenche o vetor com valores aleatórios usando SecureRandom.
         {
-            vet[i] = random.nextInt(100) + 1;
-            System.out.println(vet[i]);
+            vetorPrincipal[i] = random.nextInt(100) + 1;
         }
+        System.out.print("Vetor gerado sem classifcação: ");
+        System.out.println(Arrays.toString(vetorPrincipal));
 
-        for(int numAnterior=0; numAnterior< vet.length - 1; numAnterior++)
+        for(int numAnterior=0; numAnterior< vetorPrincipal.length - 1; numAnterior++)
+        //for: classifica o vetor em ordem crescente.
         {
-            for(int numPosterior = (numAnterior + 1); numPosterior < vet.length; numPosterior++)
+            for(int numPosterior = (numAnterior + 1); numPosterior < vetorPrincipal.length; numPosterior++)
             {
-                if(vet[numAnterior] > vet[numPosterior])
+                if(vetorPrincipal[numAnterior] > vetorPrincipal[numPosterior])
                 {
-                    aux = vet[numAnterior];
-                    vet[numAnterior] = vet[numPosterior];
-                    vet[numPosterior] = aux;
+                    auxiliar = vetorPrincipal[numAnterior];
+                    vetorPrincipal[numAnterior] = vetorPrincipal[numPosterior];
+                    vetorPrincipal[numPosterior] = auxiliar;
                 }
             }
         }
-        System.out.println(Arrays.toString(vet));
+        System.out.print("Vetor Classificado: ");
+        System.out.println(Arrays.toString(vetorPrincipal));
     }
 }
