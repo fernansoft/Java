@@ -8,6 +8,8 @@ Programador: Fernando Oliveira da Costa
 Data       : 14/03/2020
 */
 package app;
+
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 public class MenuPrincipal
 {
@@ -64,13 +66,6 @@ public class MenuPrincipal
     
     static void ProcedimentoMostra(int v[])
     {
-        System.out.println("O vetor eh:\n");
-        String mostra="";
-        for (int i=0; i<5; i++)
-        { 
-            //System.out.println(v[i]);
-            mostra += ("\t "+v[i]);
-        }
-        JOptionPane.showMessageDialog(null,mostra);
+        JOptionPane.showMessageDialog(null, "O vetor é: "+ Arrays.toString(v));
     }
 }

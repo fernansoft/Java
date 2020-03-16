@@ -88,8 +88,6 @@ public class Lote01_Exec30
     }
 
 
-
-    
     //Função verifica a quantidade de anos bissextos entre as datas inseridas
     public static int verifAnosBissextos(double anoA, int anoB)
     {

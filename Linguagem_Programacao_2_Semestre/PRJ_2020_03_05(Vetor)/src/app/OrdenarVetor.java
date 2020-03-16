@@ -7,6 +7,7 @@ package app;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 public class OrdenarVetor
 {
@@ -22,8 +23,7 @@ public class OrdenarVetor
         {
             vetorPrincipal[i] = random.nextInt(100) + 1;
         }
-        System.out.print("Vetor gerado sem classifcação: ");
-        System.out.println(Arrays.toString(vetorPrincipal));
+        JOptionPane.showMessageDialog(null, "Vetor gerado sem classifcação: "+ Arrays.toString(vetorPrincipal));
 
         for(int numAnterior=0; numAnterior< vetorPrincipal.length - 1; numAnterior++)
         //for: classifica o vetor em ordem crescente.
@@ -38,7 +38,6 @@ public class OrdenarVetor
                 }
             }
         }
-        System.out.print("Vetor Classificado: ");
-        System.out.println(Arrays.toString(vetorPrincipal));
+        JOptionPane.showMessageDialog(null, "Vetor Classificado: "+ Arrays.toString(vetorPrincipal));
     }
 }
