@@ -14,7 +14,7 @@ public class Lote1dot3_Exec04
 {
     public static void main(String[] args)
     {
-        double VetorNotas[] = new double [10];
+        double VetorNotas[] = new double [30];
         int qtdeNotasAbaixoDaMedia = 0, ciclo = 0;
         double auxiliar, media=0,valoresAcima=0;
         for(int i=0; i<(VetorNotas.length); i++)
