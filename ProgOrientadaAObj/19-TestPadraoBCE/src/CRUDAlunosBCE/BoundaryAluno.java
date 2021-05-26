@@ -87,6 +87,10 @@ public class BoundaryAluno extends Application implements EventHandler<ActionEve
                 e.printStackTrace();
             }
             lista.add(j);
+            txtId.setText("");
+            txtRa.setText("");
+            txtNome.setText("");
+            txtNascimento.setText("");
         } else if (event.getSource() == btnPesquisar) {
             for (EntityAluno j : lista) {
                 if (j.getNome().contains(txtNome.getText())) {
