@@ -1,4 +1,4 @@
-package CRUDAlunosBCE;
+package AlunosBCE;
 
 import java.util.Date;
 

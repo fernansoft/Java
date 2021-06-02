@@ -1,4 +1,4 @@
-package CRUDAlunosBCE;
+package AlunosBCE;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
