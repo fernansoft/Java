@@ -1,4 +1,4 @@
-package LivrosBCE.LivroBCE;
+package LivrosBCE.LivroBCETrad;
 
 import javafx.beans.property.*;
 

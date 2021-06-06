@@ -1,4 +1,4 @@
-package LivrosBCE.LivroBCE;
+package LivrosBCE.LivroBCETrad;
 
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
