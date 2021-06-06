@@ -47,10 +47,6 @@ public class AlunoBoundary extends Application {
         btnAdicionar.setOnAction((e) -> {
             Bindings.bindBidirectional(txtNascimento.textProperty(), control.nascimentoProperty(), localDateToStringConverter);
             control.adicionar();
-            txtId.setText("");
-            txtRa.setText("");
-            txtNome.setText("");
-            txtNascimento.setText("");
         });
         btnPesquisar.setOnAction((e) -> control.pesquisarPorNome());
 

@@ -32,8 +32,11 @@ public class AlunoControl {
     }
 
     public void adicionar() {
-        Aluno l = getEntity();
-        alunos.add(l);
+        Aluno a = getEntity();
+        alunos.add(a);
+
+        Aluno aEmpty = new Aluno();
+        setEntity(aEmpty);
     }
 
     public void pesquisarPorNome() {
