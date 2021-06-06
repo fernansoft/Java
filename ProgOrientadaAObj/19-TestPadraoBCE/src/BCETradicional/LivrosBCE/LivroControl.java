@@ -1,13 +1,17 @@
 package BCETradicional.LivrosBCE;
 
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LivroControl {
-    private List<Livro> livros = new ArrayList<>();
+    private ObservableList<Livro> livros = FXCollections.observableArrayList();
+    private TableView<Livro> table = new TableView<>();
 
     private LongProperty id = new SimpleLongProperty(0);
     private StringProperty titulo = new SimpleStringProperty("");
@@ -44,6 +48,26 @@ public class LivroControl {
     public void adicionar() {
         Livro l = getEntity();
         livros.add(l);
+
+        Livro lEmpty = new Livro();
+        setEntity(lEmpty);
+    }
+
+    public void generatedTable() {
+        TableColumn<Livro, Long> colId = new TableColumn<>("Id");
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        TableColumn<Livro, String> colTitulo = new TableColumn<>("Título");
+        colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+
+        TableColumn<Livro, String> colAutor = new TableColumn<>("Autor");
+        colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+
+        table.getColumns().addAll(colId, colTitulo, colAutor);
+
+        table.getSelectionModel().selectedItemProperty().addListener((obj, antigo, novo) -> setEntity(novo));
+
+        table.setItems(livros);
     }
 
     public void pesquisarPorTitulo() {
@@ -52,6 +76,10 @@ public class LivroControl {
                 this.setEntity(l);
             }
         }
+    }
+
+    public TableView<Livro> getTable() {
+        return table;
     }
 
     public long getId() {

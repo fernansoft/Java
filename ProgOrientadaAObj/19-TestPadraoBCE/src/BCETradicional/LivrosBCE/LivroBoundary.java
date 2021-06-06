@@ -6,14 +6,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 import javafx.util.converter.LongStringConverter;
-
-import java.time.format.DateTimeFormatter;
 
 public class LivroBoundary extends Application {
 
@@ -30,12 +29,11 @@ public class LivroBoundary extends Application {
 
     private LivroControl control = new LivroControl();
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
     @Override
     public void start(Stage stage) {
         GridPane gp = new GridPane();
-        Scene scn = new Scene(gp, 600, 400);
+        BorderPane panePrincipal = new BorderPane();
+        Scene scn = new Scene(panePrincipal, 600, 400);
 
         gp.add(new Label("Id"), 0, 0);
         gp.add(new Label("ISBN"), 0, 1);
@@ -44,7 +42,6 @@ public class LivroBoundary extends Application {
         gp.add(new Label("Lançamento"), 0, 4);
         gp.add(new Label("Autor"), 0, 5);
         gp.add(new Label("Editora"), 0, 6);
-
         gp.add(txtId, 1, 0);
         gp.add(txtISBN, 1, 1);
         gp.add(txtTitulo, 1, 2);
@@ -52,9 +49,12 @@ public class LivroBoundary extends Application {
         gp.add(txtLancamento, 1, 4);
         gp.add(txtAutor, 1, 5);
         gp.add(txtEditora, 1, 6);
-
         gp.add(btnAdicionar, 0, 7);
         gp.add(btnPesquisar, 1, 7);
+
+        control.generatedTable();
+        panePrincipal.setTop(gp);
+        panePrincipal.setCenter(control.getTable());
 
         btnAdicionar.setOnAction((e) -> control.adicionar());
         btnPesquisar.setOnAction((e) -> control.pesquisarPorTitulo());
