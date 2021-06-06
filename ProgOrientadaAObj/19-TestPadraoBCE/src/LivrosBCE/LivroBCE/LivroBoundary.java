@@ -1,14 +1,18 @@
 package LivrosBCE.LivroBCE;
 
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.LocalDateStringConverter;
+import javafx.util.converter.LongStringConverter;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class LivroBoundary extends Application {
@@ -29,7 +33,7 @@ public class LivroBoundary extends Application {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         GridPane gp = new GridPane();
         Scene scn = new Scene(gp, 600, 400);
 
@@ -52,46 +56,24 @@ public class LivroBoundary extends Application {
         gp.add(btnAdicionar, 0, 7);
         gp.add(btnPesquisar, 1, 7);
 
-        btnAdicionar.setOnAction((e) -> {
-            control.adicionar(boundaryToEntity());
-            this.entityToBoundary(new Livro());
-        });
-        btnPesquisar.setOnAction((e) -> {
-            Livro l = control.pesquisarPorTitulo(txtTitulo.getText());
-            this.entityToBoundary(l);
-        });
+        btnAdicionar.setOnAction((e) -> control.adicionar());
+        btnPesquisar.setOnAction((e) -> control.pesquisarPorTitulo());
+
+        StringConverter longToStringConverter = new LongStringConverter();
+        StringConverter integerToStringConverter = new IntegerStringConverter();
+        StringConverter localDateToStringConverter = new LocalDateStringConverter();
+
+        Bindings.bindBidirectional(txtId.textProperty(), control.idProperty(), longToStringConverter);
+        Bindings.bindBidirectional(txtTitulo.textProperty(), control.tituloProperty());
+        Bindings.bindBidirectional(txtLancamento.textProperty(), control.lancamentoProperty(), localDateToStringConverter);
+        Bindings.bindBidirectional(txtEdicao.textProperty(), control.edicaoProperty(), integerToStringConverter);
+        Bindings.bindBidirectional(txtAutor.textProperty(), control.autorProperty());
+        Bindings.bindBidirectional(txtEditora.textProperty(), control.editoraProperty());
+        Bindings.bindBidirectional(txtISBN.textProperty(), control.isbnProperty());
 
         stage.setScene(scn);
         stage.setTitle("Gestão de Livros");
         stage.show();
-    }
-
-    public Livro boundaryToEntity() {
-        Livro l = new Livro();
-        l.setTitulo(txtTitulo.getText());
-        l.setAutor(txtAutor.getText());
-        l.setEditora(txtEditora.getText());
-        l.setIsbn(txtISBN.getText());
-        try {
-            l.setId(Long.parseLong(txtId.getText()));
-            l.setEdicao(Integer.parseInt(txtEdicao.getText()));
-            l.setLancamento(LocalDate.parse(txtLancamento.getText(), dtf));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return l;
-    }
-
-    public void entityToBoundary(Livro l) {
-        if (l != null) {
-            txtId.setText(String.valueOf(l.getId()));
-            txtTitulo.setText(l.getTitulo());
-            txtEditora.setText(l.getEditora());
-            txtAutor.setText(l.getAutor());
-            txtISBN.setText(l.getIsbn());
-            txtEdicao.setText(String.valueOf(l.getEdicao()));
-            txtLancamento.setText(l.getLancamento().format(dtf));
-        }
     }
 
     public static void main(String[] args) {
